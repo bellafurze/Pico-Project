@@ -15,7 +15,9 @@ def get_light():
 def get_temp():
     pass
 def get_datetime():
-    pass
+    machine.RTC().datetime((year, month, day, 0, hour, minute, second, 0))
+
+    print("Date and Time: {:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second))
 def connect_wifi():
     pass
 def get_ip():
@@ -30,10 +32,3 @@ def read_morse():
     pass
 def main():
     pass
-    connect_wifi()
-    check_internet()
-    while True:
-        code = read_morse()
-    
-        if code == "...---...":
-        send_sos()
