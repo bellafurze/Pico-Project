@@ -1,23 +1,23 @@
-# import libraries
 import machine
 import sys
 import utime
-
-# define functions
+LED = machine.Pin("LED", machine.Pin.OUT)
 def get_light():
-        # define variable as the LED pin
-        LED = machine.Pin("LED", machine.Pin.OUT)
-
-        # while everything is true, toggle the LED and sleep for 2 seconds
-        while True:
-            LED.toggle()
-            utime.sleep(2)
+    while True:
+        LED.toggle()
 def get_temp():
-    pass
-def get_datetime():
-    machine.RTC().datetime((year, month, day, 0, hour, minute, second, 0))
+    temp_sensor = machine.ADC(4)
 
-    print("Date and Time: {:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second))
+    conv = 3.3 / (65535)
+
+    while True:
+        temp_read = temp_sensor.read_u16() * conv
+        temperature = 27 - (temp_read - 0.706) / 0.001721
+        temp = round(temperature, 1)
+        return temp
+
+def get_datetime():
+    pass
 def connect_wifi():
     pass
 def get_ip():
@@ -31,4 +31,8 @@ def send_sos():
 def read_morse():
     pass
 def main():
-    pass
+    get_light()
+    print (get_temp())
+    utime.sleep(2)
+
+main()
