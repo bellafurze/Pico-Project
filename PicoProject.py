@@ -1,7 +1,12 @@
-def led_on():
-    pass
-def led_off(): 
-    pass
+import machine
+import sys
+import utime
+def get_light():
+        LED = machine.Pin("LED", machine.Pin.OUT)
+
+        while True:
+            LED.toggle()
+            utime.sleep(2)
 def get_temp():
     pass
 def get_datetime():
