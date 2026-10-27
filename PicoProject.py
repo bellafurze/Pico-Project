@@ -1,6 +1,7 @@
 def led_on():
     pass
 def led_off(): 
+    pass
 def get_temp():
     pass
 def get_datetime():
