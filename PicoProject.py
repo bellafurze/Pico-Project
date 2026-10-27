@@ -1,7 +1,10 @@
 import machine
 import sys
 import utime
+import ntptime
 LED = machine.Pin("LED", machine.Pin.OUT)
+rtc = machine.RTC()
+ntptime.settime()
 def get_light():
         LED.toggle()
 def get_temp():
@@ -15,7 +18,8 @@ def get_temp():
     return temp
 
 def get_datetime():
-    pass
+        year, month, day, hour, minute, second, dow, doy = rtc.datetime()
+        return ("Current date and time {:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second))
 def connect_wifi():
     pass
 def get_ip():
