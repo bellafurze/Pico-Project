@@ -22,6 +22,8 @@ def connect_wifi():
         print('Waiting for connection...')
         sleep(1)
         print(wlan.ifconfig())
+        ip = wlan.ifconfig()[0]
+    print(f'Connected on {ip}')
 
 def get_temp():
     temp_sensor = machine.ADC(4)
