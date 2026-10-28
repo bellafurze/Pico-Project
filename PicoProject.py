@@ -5,9 +5,10 @@ import machine
 import sys
 import utime
 import network
+import ntptime
 # define variable as the LED pin
 LED = machine.Pin("LED", machine.Pin.OUT)
-# ntptime.settime()
+
 
 ssid = 'NAME OF YOUR WIFI NETWORK'
 password = 'YOUR SECRET PASSWORD'
@@ -62,6 +63,7 @@ def read_morse():
 
 def main():
     connect_wifi()
+    ntptime.settime()
     get_light()
     get_temp()
     get_datetime()
