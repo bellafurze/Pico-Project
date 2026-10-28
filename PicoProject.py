@@ -64,6 +64,9 @@ def send_sos():
 def read_morse():
     pass
 
+def create_JSON():
+    pass
+
 def main():
     connect_wifi()
     ntptime.settime()
