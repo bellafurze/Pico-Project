@@ -6,6 +6,7 @@ import sys
 import utime
 import network
 import ntptime
+import urequests as requests
 # define variable as the LED pin
 LED = machine.Pin("LED", machine.Pin.OUT)
 
@@ -49,10 +50,14 @@ def get_light():
 
 
 def get_ip():
-    pass
+    r = requests.get('http://api.ipify.org')
+    ip = r.text.strip()
+    r.close()
+    return ip
 
 def get_mac():
-    pass
+    mac = wlan.config('mac')
+    return ':'.join('{:02x}'.format(b) for b in mac)
 
 def check_internet():
     pass
@@ -67,13 +72,13 @@ def main():
     connect_wifi()
     ntptime.settime()
     get_light()
-    get_temp()
-    get_datetime()
-    get_ip()
-    get_mac()
+    print(get_temp())
+    print(get_datetime())
+    print(get_ip())
+    print(get_mac())
     check_internet()
-    send_sos()
     read_morse()
+    send_sos()
 
 
 main()
