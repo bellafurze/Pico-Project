@@ -34,7 +34,7 @@ def get_temp():
     return temp
 
 def get_datetime():
-    machine.RTC().datetime((year, month, day, 0, hour, minute, second, 0))
+    year, month, day, hour, minute, second = machine.RTC().datetime()
 
     print("Date and Time: {:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second))
 
