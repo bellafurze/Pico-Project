@@ -1,4 +1,7 @@
 # import libraries
+from sqlite3 import connect
+from time import sleep
+
 import machine
 import sys
 import utime
@@ -34,8 +37,10 @@ def connect_wifi():
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     wlan.connect(ssid, password)
-    while not wlan.isconnected():
-        utime.sleep(1)
+    while wlan.isconnected() == False:
+        print('Waiting for connection...')
+        sleep(1)
+        print(wlan.ifconfig())
 def get_ip():
     pass
 def get_mac():
@@ -47,4 +52,12 @@ def send_sos():
 def read_morse():
     pass
 def main():
-    pass
+    connect_wifi()
+    get_light()
+    get_temp()
+    get_datetime()
+    get_ip()
+    get_mac()
+    check_internet()
+    send_sos()
+    read_morse()
