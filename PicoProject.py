@@ -9,22 +9,19 @@ import ntptime
 import urequests as requests
 # define variable as the LED pin
 LED = machine.Pin("LED", machine.Pin.OUT)
-
+wlan = network.WLAN(network.STA_IF)
 
 ssid = 'NAME OF YOUR WIFI NETWORK'
 password = 'YOUR SECRET PASSWORD'
 
 # define functions
 def connect_wifi():
-    wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     wlan.connect(ssid, password)
-    while wlan.isconnected() == False:
+    while not wlan.isconnected():
         print('Waiting for connection...')
         sleep(1)
-        print(wlan.ifconfig())
-        ip = wlan.ifconfig()[0]
-    print(f'Connected on {ip}')
+    print('Connected')
 
 def get_temp():
     temp_sensor = machine.ADC(4)
@@ -37,9 +34,8 @@ def get_temp():
     return temp
 
 def get_datetime():
-    year, month, day, hour, minute, second = machine.RTC().datetime()
-
-    print("Date and Time: {:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second))
+    year, month, day, _, hour, minute, second, _ = machine.RTC().datetime()
+    return "{:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second)
 
 
 def get_light():       
