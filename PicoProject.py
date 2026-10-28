@@ -18,7 +18,14 @@ def get_light():
             LED.toggle()
             utime.sleep(2)
 def get_temp():
-    pass
+    temp_sensor = machine.ADC(4)
+
+    conv = 3.3 / (65535)
+
+    temp_read = temp_sensor.read_u16() * conv
+    temperature = 27 - (temp_read - 0.706) / 0.001721
+    temp = round(temperature, 1)
+    return temp
 def get_datetime():
     machine.RTC().datetime((year, month, day, 0, hour, minute, second, 0))
 
