@@ -1,5 +1,4 @@
 # import libraries
-from sqlite3 import connect
 from time import sleep
 
 import machine
@@ -14,12 +13,9 @@ ssid = 'NAME OF YOUR WIFI NETWORK'
 password = 'YOUR SECRET PASSWORD'
 
 # define functions
-def get_light():
-        
-        # while everything is true, toggle the LED and sleep for 2 seconds
-        while True:
-            LED.toggle()
-            utime.sleep(2)
+def get_light():       
+    # while everything is true, toggle the LED and sleep for 2 seconds
+    LED.toggle()
 def get_temp():
     temp_sensor = machine.ADC(4)
 
@@ -61,3 +57,6 @@ def main():
     check_internet()
     send_sos()
     read_morse()
+
+
+main()
