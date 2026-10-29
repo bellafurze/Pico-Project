@@ -51,10 +51,12 @@ def connect_wifi():
     print('Connected')
 
 def get_temp():
+    # naming the part of the board that has the temperature sensor
     temp_sensor = machine.ADC(4)
-
+    # highest voltage of the pico 3.3V and the highest value amount of voltage any analog can send thus the conversion factor is 3.3/65535
     conv = 3.3 / (65535)
 
+    # read the temperature sensor and convert the value to Celsius
     temp_read = temp_sensor.read_u16() * conv
     temperature = 27 - (temp_read - 0.706) / 0.001721
     temp = round(temperature, 1)
@@ -74,8 +76,6 @@ def get_datetime():
 def get_light():       
     # while everything is true, toggle the LED and sleep for 2 seconds
     LED.toggle()
-
-
 
 
 def get_ip():
