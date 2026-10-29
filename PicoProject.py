@@ -1,16 +1,43 @@
 # import libraries
+
+# Time library is used to add delays in the code, which can be useful for timing events or creating pauses between actions.
+# Sleep function is used to pause the execution of the program for a specified number of seconds.
 from time import sleep
 
+# Machine library is used to access the hardware features of the microcontroller
+# such as GPIO pins, ADC (Analog-to-Digital Converter)
 import machine
+
+# Sys library is used to access system-specific parameters and functions
+# such as command-line arguments, standard input/output, and system exit.
 import sys
+
+# Utime library is used to access time-related functions, such as getting the current time or measuring elapsed time.
 import utime
+
+# Network library is used to access the network features of the microcontroller
+# such as connecting to Wi-Fi networks, sending and receiving data over the internet.
 import network
+
+# NTP time library is used to synchronize the device's clock with an NTP (Network Time Protocol) server
 import ntptime
+
+# Urequests library is used to send HTTP requests and receive responses from web servers.
+# HTTP requests are used to communicate with web services and APIs, allowing the device to send and receive data over the internet.
 import urequests as requests
+
+
 # define variable as the LED pin
 LED = machine.Pin("LED", machine.Pin.OUT)
+
+
+# define variable as the WLAN interface for connecting to Wi-Fi networks
+# WLAN stands for Wireless Local Area Network, which is a type of network that allows devices to connect to the internet wirelessly.
 wlan = network.WLAN(network.STA_IF)
 
+# define the SSID and password for the Wi-Fi network to connect to
+# In the Thonny file,  we created a seperate file called secrets.py to store the SSID and password for the Wi-Fi network.
+# in our personal files we called secrets.py as a library and imported the SSID and password from it for security reasons.
 ssid = 'NAME OF YOUR WIFI NETWORK'
 password = 'YOUR SECRET PASSWORD'
 
