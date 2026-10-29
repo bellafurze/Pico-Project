@@ -108,10 +108,12 @@ def get_mac():
 def check_internet():
     try:
         r = requests.get('http://example.com')
+        print('Status code:', r.status_code)
         OK = r.status_code == 200
         r.close()
         return OK
     except OSError:
+        print('No internet connection')
         return False
 
 def read_morse():
@@ -143,6 +145,7 @@ def main():
     print(get_ip())
     print(get_mac())
     check_internet()
+    print(check_internet())
     read_morse()
     create_JSON()
     send_sos()
