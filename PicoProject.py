@@ -43,8 +43,11 @@ password = 'YOUR SECRET PASSWORD'
 
 # define functions
 def connect_wifi():
+    # activate wlan on the pico and input the SSID and password to connect to the Wi-Fi network
     wlan.active(True)
     wlan.connect(ssid, password)
+
+    # continue trying to connect to the Wi-Fi network until a connection is established
     while not wlan.isconnected():
         print('Waiting for connection...')
         sleep(1)
@@ -82,7 +85,9 @@ def get_light():
 
 
 def get_ip():
+    # get the IP address of the connection to the Wi-Fi network using the ipify website
     r = requests.get('http://api.ipify.org')
+    # strip the given ip address of any whitespace characters and return it as a string and return the IP address
     ip = r.text.strip()
     r.close()
     return ip
