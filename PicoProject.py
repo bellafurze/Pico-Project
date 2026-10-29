@@ -58,10 +58,10 @@ def get_mac():
 def check_internet():
     pass
 
-def send_sos():
+def read_morse():
     pass
 
-def read_morse():
+def send_sos():
     pass
 
 def create_JSON():
