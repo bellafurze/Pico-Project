@@ -26,6 +26,8 @@ import ntptime
 # HTTP requests are used to communicate with web services and APIs, allowing the device to send and receive data over the internet.
 import urequests as requests
 
+import ujson as json
+
 
 # define variable as the LED pin
 LED = machine.Pin("LED", machine.Pin.OUT)
@@ -106,7 +108,18 @@ def send_sos():
     pass
 
 def create_JSON():
-    pass
+    dict = {
+        "Name": "NAME",
+        "msg": "SOS",
+        "dt": get_datetime(),
+        "celsius": get_temp(),
+        "ip": get_ip(),
+        "mac": get_mac()
+    }
+    json = open ("data.json", "w")
+    json.write(str(dict))
+    json.close()
+    print(dict)
 
 def main():
     connect_wifi()
@@ -118,7 +131,9 @@ def main():
     print(get_mac())
     check_internet()
     read_morse()
+    create_JSON()
     send_sos()
+    
 
 
 main()
