@@ -87,15 +87,23 @@ def get_light():
 
 
 def get_ip():
+
     # get the IP address of the connection to the Wi-Fi network using the ipify website
     r = requests.get('http://api.ipify.org')
+    
     # strip the given ip address of any whitespace characters and return it as a string and return the IP address
     ip = r.text.strip()
     r.close()
     return ip
 
 def get_mac():
+
+    # Get the MAC address of the device's network interface. 
+    # MAC stands for Media Access Control
+    # This is a unique identifier assigned to network interfaces for communication on a network.
     mac = wlan.config('mac')
+
+    # Format the MAC address as a string of hexadecimal values (a base-16 number system) separated by colons.
     return ':'.join('{:02x}'.format(b) for b in mac)
 
 def check_internet():
