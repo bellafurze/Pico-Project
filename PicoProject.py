@@ -85,8 +85,10 @@ def get_light():
 
 
 def get_ip():
+
     # get the IP address of the connection to the Wi-Fi network using the ipify website
     r = requests.get('http://api.ipify.org')
+    
     # strip the given ip address of any whitespace characters and return it as a string and return the IP address
     ip = r.text.strip()
     r.close()
