@@ -90,7 +90,6 @@ def get_ip():
 
     # get the IP address of the connection to the Wi-Fi network using the ipify website
     r = requests.get('http://api.ipify.org')
-    
     # strip the given ip address of any whitespace characters and return it as a string and return the IP address
     ip = r.text.strip()
     r.close()
@@ -107,7 +106,13 @@ def get_mac():
     return ':'.join('{:02x}'.format(b) for b in mac)
 
 def check_internet():
-    pass
+    try:
+        r = requests.get('http://example.com')
+        OK = r.status_code == 200
+        r.close()
+        return OK
+    except OSError:
+        return False
 
 def read_morse():
     pass
