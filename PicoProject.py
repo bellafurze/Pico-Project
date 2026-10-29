@@ -145,7 +145,6 @@ def main():
     print(get_ip())
     print(get_mac())
     check_internet()
-    print(check_internet())
     read_morse()
     create_JSON()
     send_sos()
