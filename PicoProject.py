@@ -34,7 +34,13 @@ def get_temp():
     return temp
 
 def get_datetime():
+
+    # Get the current date and time from the RTC
+    # RTC means Real Time Clock, which is a hardware component 
+    # It keeps track of the current time and date even when the device is powered off.
     year, month, day, _, hour, minute, second, _ = machine.RTC().datetime()
+
+    # Return the date and time in a formatted string as "YYYY-MM-DD HH:MM:SS"
     return "{:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(year, month, day, hour, minute, second)
 
 
