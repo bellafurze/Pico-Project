@@ -43,8 +43,11 @@ password = 'YOUR SECRET PASSWORD'
 
 # define functions
 def connect_wifi():
+    # activate wlan on the pico and input the SSID and password to connect to the Wi-Fi network
     wlan.active(True)
     wlan.connect(ssid, password)
+
+    # continue trying to connect to the Wi-Fi network until a connection is established
     while not wlan.isconnected():
         print('Waiting for connection...')
         sleep(1)
