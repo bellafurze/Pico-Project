@@ -174,7 +174,7 @@ def send_sos(url, data):
 
 def create_JSON():
     dict = {
-        "Name": "NAME",
+        "name": "NAME",
         "msg": "SOS",
         "dt": get_datetime(),
         "celsius": get_temp(),
