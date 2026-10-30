@@ -120,7 +120,10 @@ def check_internet():
         return False
     
 def wires_connected():
-    return pin_in.value() == 0
+    if pin_in.value() == 0:
+        return True
+    else:
+        return False
 
 def read_morse():
     pass
