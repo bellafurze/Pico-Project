@@ -156,7 +156,21 @@ def read_morse():
             signals += "-"
 
 def send_sos():
-    pass
+    try:
+        r = requests.post("https://cpnits.com/sosapi/help", json)
+        print('Status code:', r.status_code)
+        OK = r.status_code == 200
+        r.close()
+        
+    except OSError:
+        print('Could not send SOS message')
+        return False
+    if OK:
+        print("Help is on it's way")
+    else:
+        print("Something went wrong, try again")
+    return OK
+    
 
 def create_JSON():
     dict = {
