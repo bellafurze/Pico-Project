@@ -126,7 +126,34 @@ def wires_connected():
         return False
 
 def read_morse():
-    pass
+    signals = ""
+
+    while True:
+        WaitStart = utime.ticks_ms()
+
+        while not wires_connected():
+            if signals and utime.ticks_diff(utime.ticks_ms(), WaitStart) > 2000:
+                print("Received:", signals)
+                return signals == "...---..."
+            utime.sleep_ms(10)
+
+        LED.on()
+        StartTime = utime.ticks_ms()
+
+        while wires_connected():
+            utime.sleep_ms(10)
+
+        LED.off()
+        TimePassed = utime.ticks_diff(utime.ticks_ms(), StartTime)
+
+        if TimePassed < 50:
+            continue
+        elif TimePassed <= 500:
+            print("dot")
+            signals += "."
+        else:
+            print("dash")
+            signals += "-"
 
 def send_sos():
     pass
