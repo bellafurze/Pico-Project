@@ -174,17 +174,16 @@ def send_sos(url, data):
 
 def create_JSON():
     dict = {
-        "Name": "NAME",
+        "name": "NAME",
         "msg": "SOS",
         "dt": get_datetime(),
         "celsius": get_temp(),
         "ip": get_ip(),
         "mac": get_mac()
     }
-    json = open ("data.json", "w")
-    json.write(str(dict))
-    json.close()
-    print(dict)
+    with open("data.json", "w") as f:
+        json.dump(dict, f)
+    return dict
 
 def main():
     connect_wifi()
@@ -196,12 +195,14 @@ def main():
     print(get_mac())
     print(wires_connected())
     check_internet()
-    read_morse()
-    create_JSON()
     
-    data = create_JSON()
-    url = "https://cpnits.com/sosapi/help"
-    send_sos(url, data)
+    if read_morse():
+        print("SOS Morse code recognized!")
+        data = create_JSON()
+        url = "https://cpnits.com/sosapi/help"
+        send_sos(url, data)
+    else:
+        print("Incorrect Morse code received.")
 
 
 main()
