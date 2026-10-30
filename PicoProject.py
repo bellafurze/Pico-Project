@@ -43,6 +43,9 @@ wlan = network.WLAN(network.STA_IF)
 ssid = 'NAME OF YOUR WIFI NETWORK'
 password = 'YOUR SECRET PASSWORD'
 
+
+pin_in = machine.Pin(17, machine.Pin.IN, machine.Pin.PULL_UP)
+
 # define functions
 def connect_wifi():
     # activate wlan on the pico and input the SSID and password to connect to the Wi-Fi network
@@ -115,6 +118,9 @@ def check_internet():
     except OSError:
         print('No internet connection')
         return False
+    
+def wires_connected():
+    return pin_in.value() == 0
 
 def read_morse():
     pass
@@ -144,6 +150,7 @@ def main():
     print(get_datetime())
     print(get_ip())
     print(get_mac())
+    print(wires_connected())
     check_internet()
     read_morse()
     create_JSON()
