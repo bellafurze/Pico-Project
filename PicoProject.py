@@ -155,13 +155,13 @@ def read_morse():
             print("dash")
             signals += "-"
 
-def send_sos():
+def send_sos(url, data):
     try:
-        r = requests.post("https://cpnits.com/sosapi/help", json)
+        r = requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
         print('Status code:', r.status_code)
         OK = r.status_code == 200
         r.close()
-        
+
     except OSError:
         print('Could not send SOS message')
         return False
@@ -198,8 +198,10 @@ def main():
     check_internet()
     read_morse()
     create_JSON()
-    send_sos()
     
+    data = create_JSON()
+    url = "https://cpnits.com/sosapi/help"
+    send_sos(url, data)
 
 
 main()
